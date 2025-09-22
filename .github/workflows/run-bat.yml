@@ -1,0 +1,33 @@
+name: Run BAT daily
+
+on:
+  schedule:
+    # 05:00 UTC ~ 07:00 Copenhagen (adjust as you like)
+    - cron: '0 5 * * *'
+  workflow_dispatch: {}   # allow manual run
+
+jobs:
+  run-bat:
+    runs-on: windows-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node (for npm)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run the batch file
+        shell: cmd
+        run: |
+          call bat\loop.bat
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: loop-log
+          path: work\run.log
