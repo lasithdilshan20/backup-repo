@@ -10,7 +10,7 @@ set "LOG=%BASE%\run.log"
 echo [%date% %time%] Starting the loop process... > "%LOG%"
 echo Running 150 iterations of npm install inside numbered folders. >> "%LOG%"
 
-for /l %%i in (1,1,150) do (
+for /l %%i in (1,1,300) do (
     echo. >> "%LOG%"
     echo [%date% %time%] Iteration %%i of 150 >> "%LOG%"
 
