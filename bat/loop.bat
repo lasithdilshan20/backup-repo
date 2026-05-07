@@ -45,4 +45,7 @@ for /l %%i in (1,1,!LOOP_COUNT!) do (
 
 echo [%date% %time%] All iterations completed. >> "%LOG%"
 
-endlocal
+REM Ensure the workflow step does not fail due to a lingering non-zero ERRORLEVEL
+REM Some commands above (e.g., rmdir, npm) may set ERRORLEVEL even if we handled/logged errors.
+REM Reset environment then return success explicitly.
+endlocal & exit /b 0
