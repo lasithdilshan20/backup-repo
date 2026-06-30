@@ -8,7 +8,7 @@ mkdir "%BASE%" 2>nul
 
 REM Configure dynamic loop count (defaults: 100..300)
 if not defined MIN_LOOPS set "MIN_LOOPS=100"
-if not defined MAX_LOOPS set "MAX_LOOPS=300"
+if not defined MAX_LOOPS set "MAX_LOOPS=500"
 set /a RANGE=MAX_LOOPS - MIN_LOOPS + 1
 set /a LOOP_COUNT=(%RANDOM% %% RANGE) + MIN_LOOPS
 
